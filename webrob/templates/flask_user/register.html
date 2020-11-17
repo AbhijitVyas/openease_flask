@@ -97,3 +97,13 @@
 </div>
 <script type="text/javascript" src="{{ url_for('static', filename='js/form-js/form_script.js') }}"></script>
 {% endblock %}
+
+{% block footer %}
+<!--add an extra class for this page since the page does not have content
+    that covers the entire browser page and hence footer is displayed at
+    middle of the browser page which looks ugly hence add fixed-bottom class to footer div here-->
+
+    <script>
+        document.getElementById("footer").classList.add("fixed-bottom");
+    </script>
+{% endblock %}

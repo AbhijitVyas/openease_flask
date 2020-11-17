@@ -61,10 +61,11 @@
 {% endblock %}
 
 {% block footer %}
-    <footer class="bg-dark text-white-50 fixed-bottom">
-      <div class="footer-copyright text-center py-3">
-        © <span id="myYear"> </span> Copyright: University of Bremen
-      </div>
-    </footer>
-<script type="text/javascript" src="{{ url_for('static', filename='js/form-js/copyright_year.js') }}"></script>
+<!--add an extra class for this page since the page does not have content
+    that covers the entire browser page and hence footer is displayed at
+    middle of the browser page which looks ugly hence add fixed-bottom class to footer div here-->
+
+    <script>
+        document.getElementById("footer").classList.add("fixed-bottom");
+    </script>
 {% endblock %}
