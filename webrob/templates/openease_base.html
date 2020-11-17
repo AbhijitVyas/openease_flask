@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <script type="text/javascript" src="{{ url_for('static', filename='openease.js') }}"></script>
-  <link type="image/x-icon" rel="shortcut icon" href="{{ url_for('static', filename='icons/favicon.png') }}" />
+    <script type="text/javascript" src="{{ url_for('static', filename='openease.js') }}"></script>
+    <link type="image/x-icon" rel="shortcut icon" href="{{ url_for('static', filename='icons/favicon.png') }}"/>
 
-  <script type="text/javascript">
+    <script type="text/javascript">
     function FlaskUser(){
         this.username = '{{ current_user.displayname or current_user.username or "anonymous" }}';
         this.mail     = '{{ current_user.email }}';
@@ -19,9 +19,11 @@
         };
     };
     var flask_user = new FlaskUser();
-  </script>
 
-  <style>
+
+    </script>
+
+    <style>
 #openease-navbar{
   background: linear-gradient(to bottom,
           #549FC8 0%,
@@ -57,115 +59,273 @@ a.openease-brand {
 .body-bg-color {
     background-color: #ffffff;
 }
-  </style>
-  
-  {% block head %}{% endblock %}
+#general-info-row{
+    padding-top:20px;
+}
+
+
+    </style>
+
+    {% block head %}{% endblock %}
 </head>
 
-<body{% block bodyargs %}{% endblock %}>
+<body
+        {% block bodyargs %}{% endblock %}>
 
 <nav class="navbar navbar-expand-lg navbar-dark" id="openease-navbar">
-  <a class="navbar-brand openease-brand" href="http://www.open-ease.org">
-    <img src="{{ url_for('static', filename='logos/oe-logo-small.svg') }}">
-    openEASE
-  </a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="/">
-          <i class="fas fa-home"></i>
-          Home
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/neems">
-          <i class="fas fa-search"></i>
-          NEEMs
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/tutorials/">
-          Tutorials
-        </a>
-      </li>
-    </ul>
+    <a class="navbar-brand openease-brand" href="http://www.open-ease.org">
+        <img src="{{ url_for('static', filename='logos/oe-logo-small.svg') }}">
+        openEASE
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/">
+                    <i class="fas fa-home"></i>
+                    Home
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/neems">
+                    <i class="fas fa-search"></i>
+                    NEEMs
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/tutorials/">
+                    Tutorials
+                </a>
+            </li>
+        </ul>
 
-{% block nav_right %}{% endblock %}
-    <ul class="navbar-nav text-right">
-{% if current_user.is_authenticated %}
-{% if current_user.has_role('admin') %}
-      <!-- Admin Dropdown -->
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-          <i class="fas fa-user-secret"></i>
-          Admin
-        </a>
-        <div class="dropdown-menu">
-          <a class="dropdown-item" href="{{ url_for('db_page_user_roles') }}">User Roles</a>
-          <a class="dropdown-item" href="{{ url_for('admin_cookie') }}">Cookies</a>
-          <a class="dropdown-item" href="{{ url_for('render_neem_hub_settings_page_get') }}">NEEM Hub Settings</a>
-        </div>
-      </li>
-{% endif %}
-      <!-- User Dropdown -->
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-          <i class="fas fa-user"></i>
-          User
-        </a>
-        <div class="dropdown-menu">
-          <a class="dropdown-item" href="{{ url_for('render_user_data') }}">User Info</a>
-          <a class="dropdown-item" href="{{ url_for('user.logout') }}"><span class="fas fa-sign-out-alt"></span> Logout</a>
-        </div>
-      </li>
-{% else %}
-      <li class="nav-item">
-        <a class="nav-link" href="{{ url_for('user.register') }}">
-          <span class="fas fa-user-plus"></span> Sign Up
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{{ url_for('user.login') }}">
-          <span class="fas fa-sign-in-alt"></span> Login
-        </a>
-      </li>
-{% endif %}
-    </ul>
-  </div>
+        {% block nav_right %}{% endblock %}
+        <ul class="navbar-nav text-right">
+            {% if current_user.is_authenticated %}
+            {% if current_user.has_role('admin') %}
+            <!-- Admin Dropdown -->
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                    <i class="fas fa-user-secret"></i>
+                    Admin
+                </a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="{{ url_for('db_page_user_roles') }}">User Roles</a>
+                    <a class="dropdown-item" href="{{ url_for('admin_cookie') }}">Cookies</a>
+                    <a class="dropdown-item" href="{{ url_for('render_neem_hub_settings_page_get') }}">NEEM Hub
+                        Settings</a>
+                </div>
+            </li>
+            {% endif %}
+            <!-- User Dropdown -->
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                    <i class="fas fa-user"></i>
+                    User
+                </a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="{{ url_for('render_user_data') }}">User Info</a>
+                    <a class="dropdown-item" href="{{ url_for('user.logout') }}"><span
+                            class="fas fa-sign-out-alt"></span> Logout</a>
+                </div>
+            </li>
+            {% else %}
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('user.register') }}">
+                    <span class="fas fa-user-plus"></span> Sign Up
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('user.login') }}">
+                    <span class="fas fa-sign-in-alt"></span> Login
+                </a>
+            </li>
+            {% endif %}
+        </ul>
+    </div>
 </nav>
 
 <!-- let all flash messages rander here -->
 {% with messages = get_flashed_messages(with_categories=true) %}
-    {% if messages %}
-        {% for category, message in messages %}
-            <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
-                <span id="flash_alert_span">{{ message }}</span>
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-        {% endfor %}
-    {% endif %}
+{% if messages %}
+{% for category, message in messages %}
+<div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+    <span id="flash_alert_span">{{ message }}</span>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+{% endfor %}
+{% endif %}
 {% endwith %}
 {% block body %}{% endblock %}
 
 <footer id="footer" class="bg-dark text-white-50">
-  <div class="footer-copyright text-center py-3">
-    © <span id="myYear"> </span> Copyright: University of Bremen
-  </div>
+    <!-- copy right text -->
+    <div class="footer-copyright text-center py-3">
+        © <span id="myYear"> </span> Copyright: University of Bremen
+        <a id="toggle_button" class="btn-floating btn-gplus mx-1" aria-expanded="false">
+            <i class="fas fa-angle-double-down"> </i>
+        </a>
+    </div>
+    <!-- copy right text -->
+
+    <div class="row" hidden="" id="extended_footer">
+
+        <!--    general info -->
+    <div class="container col-md-12 col-sm-12">
+        <div class="row" id="general-info-row">
+            <div class="col-md-1 col-sm-1"></div>
+
+            <div class="col-md-2 col-sm-2">
+                <h4>IAI University Bremen</h4>
+                <span class="footer-text-color">The Institute for Artificial Intelligence (IAI) directed by Prof. Michael Beetz is part of the Faculty of Computer Science and member of the Center for Computing and Communication Technologies (TZI) at the University of Bremen.</span>
+            </div>
+
+            <div class="col-md-2 col-sm-2">
+                <div class="support-cus">
+                    <h4>Reach Out</h4>
+                    <p class="footer-text-color">Am Fallturm 1, 28359 Bremen, Germany</p>
+                </div>
+                <div class="support-cus">
+                    <h4>Contact Info</h4>
+                    <p><a class="footer-a" href="https://ai.uni-bremen.de/" target="_blank">https://ai.uni-bremen.de/</a>
+                    </p>
+                    <p><a class="footer-a" href="mailto:ai-office@cs.uni-bremen.de" target="_blank">ai-office@cs.uni-bremen.de</a>
+                    </p>
+                    <p class="footer-a">Tel: –49 -421 21864000</p>
+                </div>
+            </div>
+
+            <!-- logos -->
+            <div class="col-md-2 col-sm-2">
+                <div class="logos">
+                    <a href="https://ease-crc.org/" target="_blank"> <img
+                            src="https://avatars1.githubusercontent.com/u/45171239?s=200&amp;v=4"
+                            alt="ease logo" width="80" height="80"></a>
+                </div>
+
+                <div class="logos">
+                    <a href="https://www.dfg.de/en/" target="_blank"> <img
+                            src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/DFG-logo-blau.svg/800px-DFG-logo-blau.svg.png"
+                            alt="dfg logo" width="182" height="50"></a>
+                </div>
+
+                <div class="logos">
+                    <a href="https://www.uni-bremen.de/" target="_blank"> <img
+                            src="https://www.socialpolicydynamics.de/images/logos/logo_trans.png"
+                            alt="university bremen" width="247" height="50"> </a> <br>
+                </div>
+            </div>
+            <div class="col-md-2 col-sm-2">
+
+                <div class="logos">
+                    <a href="http://www.robohow.eu" target="_blank" title="http://www.robohow.eu">
+                        <img src="/static/logos/robohow-logo.png" alt="" width="247" height="50">
+                    </a>
+                </div>
+                <br>
+                <div class="logos">
+                    <a href="http://www.roboearth.org" target="_blank" title="http://www.roboearth.org">
+                        <img src="/static/logos/roboearth-logo.png" alt="" width="247" height="50">
+                    </a>
+                </div>
+                <br>
+                <div class="logos">
+                    <a href="http://www.sherpa-project.eu" target="_blank" title="http://www.sherpa-project.eu">
+                        <img src="/static/logos/sherpa-logo.png" alt="" width="247" height="50">
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-2 col-sm-2">
+                <div class="logos float-left">
+                    <a href="http://www.refills-project.eu/" target="_blank" title="http://www.refills-project.eu/">
+                        <img src="/static/logos/refills.png" alt="" hspace="35" height="50">
+                    </a>
+                    <a href="http://www.acat-project.eu/" target="_blank" title="http://www.acat-project.eu/" rel="nofollow">
+                        <img src="/static/logos/acat-logo.png" alt="" width="67" height="50">
+                    </a>
+                </div>
+                <br><br><br>
+
+                <div class="logos">
+                    <a href="http://www.saphari.eu" target="_blank" title="http://www.saphari.eu" rel="nofollow">
+                        <img src="/static/logos/saphari-logo.png" alt="" width="247" height="50">
+                    </a>
+                </div>
+                <br>
+
+                <div class="logos">
+                    <a href="https://ec.europa.eu/programmes/horizon2020/" target="_blank"
+                       title="https://ec.europa.eu/programmes/horizon2020/" rel="nofollow">
+                        <img src="/static/logos/h2020.png" alt="" width="247" height="50">
+                    </a>
+                </div>
+            </div>
+            <!-- logos -->
+
+        </div>
+    </div>
+    <!--    general info -->
+
+    <!-- Social buttons -->
+    <div class="col-md-4 col-sm-4"></div>
+    <div class="col-md-4 col-sm-4">
+        <ul class="list-unstyled list-inline text-center">
+<!--            <li class="list-inline-item">-->
+<!--                <a class="fab fa-facebook-f" target="_blank"></a>-->
+<!--            </li>-->
+            <li class="list-inline-item">
+                <a href="https://twitter.com/iai_bremen" target="_blank">
+                    <i class="fab fa-2x fa-twitter"></i>
+                </a>
+            </li>
+            <li class="list-inline-item">
+                <a href="https://www.youtube.com/user/agkiunibremen" target="_blank">
+                    <i class="fab fa-2x fa-youtube"></i>
+                </a>
+            </li>
+            <li class="list-inline-item">
+                <a href="http://www.open-ease.org/" target="_blank">
+                    <i class="fa fa-2x fa-globe"></i>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="col-md-4 col-sm-4"></div>
+
+    </div>
+    <!-- Social buttons -->
+
 </footer>
 <script type="text/javascript" src="{{ url_for('static', filename='js/form-js/copyright_year.js') }}"></script>
 
+<script>
+;(function () {
+  $(document).ready(function () {
+    var $button, $extended_footer
+    $button = $('#toggle_button')
+    $extended_footer = $('#extended_footer')
+    return $button.click(() => {
+      if ($extended_footer.attr('hidden') === 'hidden') {
+        $extended_footer.removeAttr('hidden')
+        return $button.attr('aria-expanded', true)
+      } else {
+        $extended_footer.attr('hidden', true)
+        return $button.attr('aria-expanded', false)
+      }
+    })
+  })
+}.call(this))
+</script>
 {% block footer %}
 {% endblock %}
 
 </body>
 
-
-  
 
 <!-- remove flash alert after 5 seconds -->
 <script>
@@ -175,6 +335,8 @@ a.openease-brand {
     }, 5000 ); // 5 secs
 
 });
+
+
 </script>
 </html>
 
