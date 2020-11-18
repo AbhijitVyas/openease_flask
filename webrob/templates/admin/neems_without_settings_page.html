@@ -1,26 +1,19 @@
 {% extends "openease_base.html" %}
 
 {% block head %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/common_layout.css') }}"/>
 {% endblock %}
 
 {% block body %}
-<div class="container p-4 body-bg-color">
-    <div class="card" id="user-data">
-        <div class="card-header bg-openease-light">{% trans %}NEEM Hub configuration settings{% endtrans %}</div>
-        <div class="card-body">
-            <p>It seems you have either not configured NEEM Hub settings properly or at all. Please press button to go to configuration page.</p>
-            <button class="col-sm-2 btn btn-sm btn-primary" type="button" onclick="window.location.href='{{ url_for('render_neem_hub_settings_page_get') }}';" name="Go to settings" value="Go to settings">Go to settings</button>
+<div id="page-content">
+    <div class="container p-4 body-bg-color">
+        <div class="card" id="user-data">
+            <div class="card-header bg-openease-light">{% trans %}NEEM Hub configuration settings{% endtrans %}</div>
+            <div class="card-body">
+                <p>It seems you have either not configured NEEM Hub settings properly or at all. Please press button to go to configuration page.</p>
+                <button class="col-sm-2 btn btn-sm btn-primary" type="button" onclick="window.location.href='{{ url_for('render_neem_hub_settings_page_get') }}';" name="Go to settings" value="Go to settings">Go to settings</button>
+            </div>
         </div>
     </div>
 </div>
-{% endblock %}
-
-{% block footer %}
-<!--add an extra class for this page since the page does not have content
-    that covers the entire browser page and hence footer is displayed at
-    middle of the browser page which looks ugly hence add fixed-bottom class to footer div here-->
-
-    <script>
-        document.getElementById("footer").classList.add("fixed-bottom");
-    </script>
 {% endblock %}

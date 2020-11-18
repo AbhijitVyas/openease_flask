@@ -1,0 +1,21 @@
+/* this file is used for common layout for pages */
+
+html,
+body {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    background: none repeat scroll 0% 0% #ffffff;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+#page-content {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    width:100%;
+    min-height: -o-calc(100% - 112px); /* opera */
+    min-height: -webkit-calc(100% - 112px); /* google, safari */
+    min-height: -moz-calc(100% - 112px); /* firefox */
+    min-height: calc(100% - 112px); /* firefox 53 and newer*/
+}

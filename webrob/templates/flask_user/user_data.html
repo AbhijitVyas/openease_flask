@@ -9,10 +9,12 @@
     background-color: #dcdcdc;
 }
 </style>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/common_layout.css') }}"/>
 {% endblock %}
 
 {% block body %}
-<div class="container p-4 body-bg-color">
+<div id="page-content">
+    <div class="container p-4 body-bg-color">
     <div class="card" id="user-data">
         <div class="card-header bg-openease-light">{% trans %}Signed in as{% endtrans %}</div>
         <div class="card-body">
@@ -35,14 +37,5 @@
         </div>
     </div>
 </div>
-{% endblock %}
-
-{% block footer %}
-<!--add an extra class for this page since the page does not have content
-    that covers the entire browser page and hence footer is displayed at
-    middle of the browser page which looks ugly hence add fixed-bottom class to footer div here-->
-
-    <script>
-        document.getElementById("footer").classList.add("fixed-bottom");
-    </script>
+</div>
 {% endblock %}

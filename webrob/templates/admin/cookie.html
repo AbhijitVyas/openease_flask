@@ -6,9 +6,10 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='lib/kendo/kendo.dataviz.min.css') }}" />
     <link rel="stylesheet" href="{{ url_for('static', filename='lib/kendo/kendo.dataviz.default.min.css') }}" />
     <script type="text/javascript"  src="{{ url_for('static', filename='lib/kendo/kendo.all.min.js') }}" ></script>-->
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/common_layout.css') }}"/>
 {% endblock %}
 
-{% block content %}
+{% block body %}
 <script>
     $(document).ready(function () {
         var cookie_values = [
@@ -75,7 +76,9 @@
         });
     });
 </script>
-<div id="mng_admin_panel">
-    <div id="grid"> </div>
+<div id="page-content">
+    <div id="mng_admin_panel">
+        <div id="grid"> </div>
+    </div>
 </div>
 {% endblock %}
