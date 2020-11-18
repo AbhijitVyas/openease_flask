@@ -9,9 +9,9 @@ settings_Id = 1
 
 class NEEMHubSettings(db.Model):
     def __init__(self):
-        self.MONGO_HOST = ""
-        self.MONGO_PORT = 0
-        self.MONGO_DB = ""
+        self.MONGO_HOST = "data.open-ease.org"
+        self.MONGO_PORT = 28015
+        self.MONGO_DB = "neems"
         self.MONGO_USER = ""
         self.MONGO_PASS = ""
 
