@@ -20,9 +20,6 @@ class NEEM_Manager:
         if count > 0:
             mongoDBMetaCollection = get_mongo_db_meta_collection()
             self.neem_ids = mongoDBMetaCollection.find().distinct('_id')
-            # TODO: remove again multiply with 20 and return only self.neem_ids,
-            #  just for testing pagination as long as only few neems are there
-            self.neem_ids = self.neem_ids * 20
 
         return self.neem_ids
 
